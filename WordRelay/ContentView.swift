@@ -11,7 +11,7 @@ struct ContentView: View {
     
     let title: String = "끝말잇기 게임"
     @State var nextWord: String = ""
-    var words: [String] = ["침착맨", "컵받침", "물컵"]
+    var words: [String] = ["물컵", "컵받침", "침착맨"]
     
     var body: some View {
         VStack {
@@ -51,16 +51,13 @@ struct ContentView: View {
                 .padding(.trailing, 6)
             }
             .padding(.horizontal, 6)
-            Divider()
-            VStack {
-                ForEach(0..<5) { number in
-                    Text("안녕하세요\(number)")
-                }
-                Divider()
-                ForEach(words, id: \.self) { word in
+
+            List {
+                ForEach(words.reversed(), id: \.self) { word in
                     Text(word)
                 }
             }
+            .listStyle(.plain)
         }
         Spacer()
     }
