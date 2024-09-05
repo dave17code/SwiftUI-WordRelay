@@ -12,6 +12,7 @@ struct ContentView: View {
     let title: String = "끝말잇기 게임"
     @State var nextWord: String = ""
     @State var words: [String] = ["Apple", "Elsa", "Aladin"]
+    @State var showAlert: Bool = false
     
     var body: some View {
         VStack {
@@ -45,6 +46,7 @@ struct ContentView: View {
                         nextWord = ""
                     } else {
                         // 끝말이 이어지지 않는 상황
+                        showAlert = true
                         nextWord = ""
                     }
                 }, label: {
@@ -58,6 +60,11 @@ struct ContentView: View {
                         .fill(Color.blue)
                 )
                 .padding(.trailing, 6)
+                .alert("끝말이 이어지는 단어를 입력해주세요.", isPresented: $showAlert) {
+                    Button("확인", role: .cancel) {
+                        showAlert = false
+                    }
+                }
             }
             .padding(.horizontal, 6)
 
