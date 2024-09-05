@@ -11,7 +11,7 @@ struct ContentView: View {
     
     let title: String = "끝말잇기 게임"
     @State var nextWord: String = ""
-    @State var words: [String] = ["물컵", "컵받침", "침착맨"]
+    @State var words: [String] = ["Apple", "Elsa", "Aladin"]
     
     var body: some View {
         VStack {
@@ -39,8 +39,14 @@ struct ContentView: View {
                     print("입력하신 단어는: ", nextWord)
                     // 사용자가 입력한 단어: nextWord
                     // 단어들의 목록: words
-                    words.append(nextWord)
-                    nextWord = ""
+                    if words.last?.last?.lowercased() == nextWord.first?.lowercased() {
+                        // 끝말 이어지는 상황
+                        words.append(nextWord)
+                        nextWord = ""
+                    } else {
+                        // 끝말이 이어지지 않는 상황
+                        nextWord = ""
+                    }
                 }, label: {
                     Text("확인")
                 })
