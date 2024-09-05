@@ -11,7 +11,7 @@ struct ContentView: View {
     
     let title: String = "끝말잇기 게임"
     @State var nextWord: String = ""
-    var words: [String] = ["물컵", "컵받침", "침착맨"]
+    @State var words: [String] = ["물컵", "컵받침", "침착맨"]
     
     var body: some View {
         VStack {
@@ -36,7 +36,10 @@ struct ContentView: View {
                 .padding(.leading, 12)
                 Button(action: {
                     // 동작
-                    print(nextWord)
+                    print("입력하신 단어는: ", nextWord)
+                    // 사용자가 입력한 단어: nextWord
+                    // 단어들의 목록: words
+                    words.append(nextWord)
                     nextWord = ""
                 }, label: {
                     Text("확인")
